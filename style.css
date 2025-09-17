@@ -1,2 +1,87 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>B5Q8NA7KC8E6F991</RequestId><HostId>re/2BWD8bk+dg46Qc8TD21QNLjhHZGmwoNTL39pgcxK0/UCv6+UkmVxNZTm8PHpaLHbpwZI93B9bCyCFmLUmCKNZImcDwYf4</HostId></Error>
+:root {
+  --color-background: #fafafa;
+  --color-surface: #ffffff;
+  --color-text: #1c1c1e;
+  --color-text-secondary: #8e8e93;
+  --color-primary: #007aff;
+  --color-primary-hover: #0062cc;
+  --color-primary-active: #004fa3;
+  --color-border: #d1d1d6;
+  --color-btn-primary-text: #fff;
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.15);
+
+  --font-family-base: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  --font-weight-semibold: 600;
+  --radius-full: 9999px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-base);
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  border-radius: var(--radius-full);
+  padding: 12px 20px;
+  font-weight: var(--font-weight-semibold);
+  transition: all 0.25s ease;
+  border: none;
+}
+.btn--primary:hover {
+  background: var(--color-primary-hover);
+}
+.btn--primary:active {
+  background: var(--color-primary-active);
+}
+
+.stat-card, .ejercicio-card, .rutina-card, .carpeta-card {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.stat-card:hover, .ejercicio-card:hover, .rutina-card:hover, .carpeta-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.container {
+  padding: 24px;
+}
+
+.footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+body { padding-bottom: 60px; }
+
+/* Mobile first */
+@media (max-width: 600px) {
+  .stats-grid, .ejercicios-grid, .carpetas-grid, .historial-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  h1, h2, h3 { font-size: 1.5rem; }
+  .btn--xl { font-size: 1rem; padding: 14px; }
+}
