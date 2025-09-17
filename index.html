@@ -11,93 +11,47 @@
   <div id="dashboard" class="view active">
     <header class="header">
       <h1>GYM para Piquis</h1>
-      <div class="header-actions">
-        <button class="btn btn--secondary btn--sm" id="backup-btn">💾 Backup</button>
-        <button class="btn btn--secondary btn--sm" id="importar-backup-btn">📁 Importar</button>
-        <div class="backup-status" id="backup-status">
-          <span class="status status--success">Auto-guardado hace 30s</span>
-        </div>
-      </div>
     </header>
-
     <div class="container">
       <div class="stats-grid">
-        <div class="stat-card">
-          <h3>Esta Semana</h3>
-          <div class="stat-number">4</div>
-          <div class="stat-label">Entrenamientos</div>
-        </div>
-        <div class="stat-card">
-          <h3>Total</h3>
-          <div class="stat-number">127</div>
-          <div class="stat-label">Sesiones</div>
-        </div>
-        <div class="stat-card">
-          <h3>Progreso</h3>
-          <div class="stat-number">+12.5kg</div>
-          <div class="stat-label">Press Banca</div>
-        </div>
-        <div class="stat-card">
-          <h3>Rutinas</h3>
-          <div class="stat-number">8</div>
-          <div class="stat-label">Creadas</div>
-        </div>
+        <div class="stat-card"><h3>Esta Semana</h3><div class="stat-number">4</div><div class="stat-label">Entrenamientos</div></div>
+        <div class="stat-card"><h3>Total</h3><div class="stat-number">127</div><div class="stat-label">Sesiones</div></div>
+        <div class="stat-card"><h3>Progreso</h3><div class="stat-number">+12.5kg</div><div class="stat-label">Press Banca</div></div>
+        <div class="stat-card"><h3>Rutinas</h3><div class="stat-number">8</div><div class="stat-label">Creadas</div></div>
       </div>
-
       <div class="quick-actions">
-        <button class="btn btn--primary btn--xl main-btn" id="quick-workout-btn">🚀 Iniciar Entrenamiento</button>
-        <button class="btn btn--secondary btn--xl main-btn" id="biblioteca-btn">📚 Biblioteca</button>
-        <button class="btn btn--secondary btn--xl main-btn" id="historial-btn">📊 Historial</button>
-        <button class="btn btn--secondary btn--xl main-btn" id="rutinas-btn">📝 Rutinas</button>
+        <button class="btn btn--primary btn--xl" id="quick-workout-btn">🚀 Iniciar Entrenamiento</button>
+        <button class="btn btn--secondary btn--xl" id="biblioteca-btn">📚 Biblioteca</button>
+        <button class="btn btn--secondary btn--xl" id="historial-btn">📊 Historial</button>
+        <button class="btn btn--secondary btn--xl" id="rutinas-btn">📝 Rutinas</button>
       </div>
     </div>
   </div>
 
   <!-- Vista Biblioteca -->
   <div id="biblioteca" class="view">
-    <header class="header">
-      <h1>📚 Biblioteca</h1>
-      <button class="btn btn--secondary" onclick="gymApp.navigate('dashboard')">⬅ Volver</button>
-    </header>
-    <div class="container">
-      <p>Aquí irá la lista de ejercicios disponibles.</p>
-    </div>
+    <header class="header"><h1>📚 Biblioteca</h1><button class="btn btn--secondary" onclick="gymApp.navigate('dashboard')">⬅ Volver</button></header>
+    <div class="container"><p>Lista de ejercicios disponible próximamente.</p></div>
   </div>
 
   <!-- Vista Rutinas -->
   <div id="rutinas" class="view">
-    <header class="header">
-      <h1>📝 Rutinas</h1>
-      <button class="btn btn--secondary" onclick="gymApp.navigate('dashboard')">⬅ Volver</button>
-    </header>
-    <div class="container">
-      <p>Aquí podrás crear y gestionar tus rutinas.</p>
-    </div>
+    <header class="header"><h1>📝 Rutinas</h1><button class="btn btn--secondary" onclick="gymApp.navigate('dashboard')">⬅ Volver</button></header>
+    <div class="container"><p>Aquí podrás crear y gestionar tus rutinas.</p></div>
   </div>
 
   <!-- Vista Historial -->
   <div id="historial" class="view">
-    <header class="header">
-      <h1>📊 Historial</h1>
-      <button class="btn btn--secondary" onclick="gymApp.navigate('dashboard')">⬅ Volver</button>
-    </header>
-    <div class="container">
-      <p>Aquí verás el historial de tus entrenamientos.</p>
-    </div>
+    <header class="header"><h1>📊 Historial</h1><button class="btn btn--secondary" onclick="gymApp.navigate('dashboard')">⬅ Volver</button></header>
+    <div class="container"><p>Historial de entrenamientos próximamente.</p></div>
   </div>
 
   <!-- Vista Entrenamiento -->
   <div id="entrenamiento" class="view">
-    <header class="header">
-      <h1>🚀 Entrenamiento</h1>
-      <button class="btn btn--secondary" onclick="gymApp.navigate('dashboard')">⬅ Terminar</button>
-    </header>
-    <div class="container">
-      <p>Aquí se mostrará el entrenamiento en curso.</p>
-    </div>
+    <header class="header"><h1>🚀 Entrenamiento</h1><button class="btn btn--secondary" onclick="gymApp.navigate('dashboard')">⬅ Terminar</button></header>
+    <div class="container"><p>Entrenamiento en curso...</p></div>
   </div>
 
-  <!-- Footer -->
   <footer class="footer">
     <p>© 2025 GYM para Piquis. Todos los derechos reservados.</p>
   </footer>
