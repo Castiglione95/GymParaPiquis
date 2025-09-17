@@ -1,61 +1,421 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GYM para Piquis</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymTracker v4.1 CORREGIDO</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Dashboard Principal -->
-  <div id="dashboard" class="view active">
-    <header class="header">
-      <h1>GYM para Piquis</h1>
-    </header>
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-card"><h3>Esta Semana</h3><div class="stat-number">4</div><div class="stat-label">Entrenamientos</div></div>
-        <div class="stat-card"><h3>Total</h3><div class="stat-number">127</div><div class="stat-label">Sesiones</div></div>
-        <div class="stat-card"><h3>Progreso</h3><div class="stat-number">+12.5kg</div><div class="stat-label">Press Banca</div></div>
-        <div class="stat-card"><h3>Rutinas</h3><div class="stat-number">8</div><div class="stat-label">Creadas</div></div>
-      </div>
-      <div class="quick-actions">
-        <button class="btn btn--primary btn--xl" id="quick-workout-btn">🚀 Iniciar Entrenamiento</button>
-        <button class="btn btn--secondary btn--xl" id="biblioteca-btn">📚 Biblioteca</button>
-        <button class="btn btn--secondary btn--xl" id="historial-btn">📊 Historial</button>
-        <button class="btn btn--secondary btn--xl" id="rutinas-btn">📝 Rutinas</button>
-      </div>
+    <!-- Dashboard Principal -->
+    <div id="dashboard" class="view active">
+        <header class="header">
+            <h1>🏋️ GymTracker v4.1</h1>
+            <div class="header-actions">
+                <button class="btn btn--secondary btn--sm" id="backup-btn">💾 Backup</button>
+                <button class="btn btn--secondary btn--sm" id="importar-backup-btn">📁 Importar</button>
+                <div class="backup-status" id="backup-status">
+                    <span class="status status--success">Auto-guardado hace 30s</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Esta Semana</h3>
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Entrenamientos</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Total</h3>
+                    <div class="stat-number">127</div>
+                    <div class="stat-label">Sesiones</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Progreso</h3>
+                    <div class="stat-number">+12.5kg</div>
+                    <div class="stat-label">Press Banca</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Rutinas</h3>
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Creadas</div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <button class="btn btn--primary btn--xl main-btn" id="quick-workout-btn">🚀 Iniciar Entrenamiento</button>
+                <button class="btn btn--secondary btn--xl main-btn" id="biblioteca-btn">📚 Biblioteca</button>
+                <button class="btn btn--secondary btn--xl main-btn" id="historial-btn">📊 Historial</button>
+                <button class="btn btn--secondary btn--xl main-btn" id="rutinas-btn">📝 Rutinas</button>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- Vista Biblioteca -->
-  <div id="biblioteca" class="view">
-    <header class="header"><h1>📚 Biblioteca</h1><button class="btn btn--secondary" onclick="gymApp.navigate('dashboard')">⬅ Volver</button></header>
-    <div class="container"><p>Lista de ejercicios disponible próximamente.</p></div>
-  </div>
+    <!-- Biblioteca de Ejercicios -->
+    <div id="biblioteca" class="view">
+        <header class="header">
+            <button class="btn btn--outline btn--sm back-btn" id="biblioteca-back">⬅️ Atrás</button>
+            <h2>📚 Biblioteca de Ejercicios</h2>
+            <div class="header-actions">
+                <button class="btn btn--primary btn--sm" id="nuevo-ejercicio-btn">➕ Nuevo Ejercicio</button>
+            </div>
+        </header>
 
-  <!-- Vista Rutinas -->
-  <div id="rutinas" class="view">
-    <header class="header"><h1>📝 Rutinas</h1><button class="btn btn--secondary" onclick="gymApp.navigate('dashboard')">⬅ Volver</button></header>
-    <div class="container"><p>Aquí podrás crear y gestionar tus rutinas.</p></div>
-  </div>
+        <div class="container">
+            <div class="search-filter-section">
+                <input type="text" class="form-control" id="ejercicio-search" placeholder="Buscar ejercicios...">
+                
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="todos">Todos</button>
+                    <button class="filter-btn" data-filter="Pecho">Pecho</button>
+                    <button class="filter-btn" data-filter="Espalda">Espalda</button>
+                    <button class="filter-btn" data-filter="Piernas">Piernas</button>
+                    <button class="filter-btn" data-filter="Hombros">Hombros</button>
+                    <button class="filter-btn" data-filter="Brazos">Brazos</button>
+                </div>
+            </div>
 
-  <!-- Vista Historial -->
-  <div id="historial" class="view">
-    <header class="header"><h1>📊 Historial</h1><button class="btn btn--secondary" onclick="gymApp.navigate('dashboard')">⬅ Volver</button></header>
-    <div class="container"><p>Historial de entrenamientos próximamente.</p></div>
-  </div>
+            <div id="ejercicios-list" class="ejercicios-grid"></div>
+        </div>
+    </div>
 
-  <!-- Vista Entrenamiento -->
-  <div id="entrenamiento" class="view">
-    <header class="header"><h1>🚀 Entrenamiento</h1><button class="btn btn--secondary" onclick="gymApp.navigate('dashboard')">⬅ Terminar</button></header>
-    <div class="container"><p>Entrenamiento en curso...</p></div>
-  </div>
+    <!-- Rutinas y Carpetas -->
+    <div id="rutinas" class="view">
+        <header class="header">
+            <button class="btn btn--outline btn--sm back-btn" id="rutinas-back">⬅️ Atrás</button>
+            <h2 id="rutinas-title">📝 Rutinas</h2>
+            <div class="header-actions">
+                <button class="btn btn--secondary btn--sm" id="edit-mode-btn">✏️ Editar</button>
+                <button class="btn btn--primary btn--sm" id="nueva-rutina-btn">➕ Nueva Rutina</button>
+            </div>
+        </header>
 
-  <footer class="footer">
-    <p>© 2025 GYM para Piquis. Todos los derechos reservados.</p>
-  </footer>
+        <div class="container">
+            <div class="breadcrumbs" id="breadcrumbs"></div>
+            <div id="carpetas-rutinas-list" class="carpetas-grid"></div>
+            
+            <div class="floating-actions">
+                <button class="btn btn--secondary" id="nueva-carpeta-btn">📁 Nueva Carpeta</button>
+                <button class="btn btn--secondary" id="importar-rutina-btn">📥 Importar</button>
+            </div>
+        </div>
+    </div>
 
-  <script src="app.js"></script>
+    <!-- Historial -->
+    <div id="historial" class="view">
+        <header class="header">
+            <button class="btn btn--outline btn--sm back-btn" id="historial-back">⬅️ Atrás</button>
+            <h2>📊 Historial de Entrenamientos</h2>
+        </header>
+
+        <div class="container">
+            <div id="historial-list" class="historial-grid"></div>
+        </div>
+    </div>
+
+    <!-- Entrenamiento Activo -->
+    <div id="entrenamiento" class="view">
+        <header class="header">
+            <h2 id="entrenamiento-title">🏋️ Entrenando</h2>
+            <div class="header-actions">
+                <button class="btn btn--outline btn--sm" id="cancelar-entrenamiento">❌ Cancelar</button>
+                <button class="btn btn--secondary btn--sm" id="finalizar-entrenamiento">✅ Finalizar</button>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="ejercicio-actual" id="ejercicio-actual">
+                <div class="ejercicio-info">
+                    <h3 id="ejercicio-nombre">Press de Banca</h3>
+                    <div class="ejercicio-meta">
+                        <select id="ejercicio-equipamiento" class="form-control">
+                            <option value="Barra">Barra</option>
+                            <option value="Mancuernas">Mancuernas</option>
+                            <option value="Máquina">Máquina</option>
+                            <option value="Cable">Cable</option>
+                            <option value="Peso Corporal">Peso Corporal</option>
+                        </select>
+                    </div>
+                    <div class="referencia-anterior" id="referencia-anterior">
+                        <small>Último entrenamiento: <strong>80kg x 8 reps</strong> (🟡)</small>
+                    </div>
+                </div>
+
+                <div class="series-container" id="series-container">
+                    <!-- Series completadas aparecen aquí -->
+                </div>
+
+                <div class="serie-nueva">
+                    <h4>Nueva Serie</h4>
+                    <div class="serie-inputs-simple">
+                        <div class="input-group">
+                            <label>Peso (kg)</label>
+                            <input type="number" step="0.25" id="nuevo-peso" class="form-control" placeholder="80.0">
+                        </div>
+                        <div class="input-group">
+                            <label>Repeticiones</label>
+                            <input type="number" id="nuevo-reps" class="form-control" placeholder="8">
+                        </div>
+                    </div>
+                    <div class="color-esfuerzo">
+                        <button class="color-btn verde" data-color="facil" title="Fácil">🟢</button>
+                        <button class="color-btn amarillo" data-color="dificil" title="Difícil">🟡</button>
+                        <button class="color-btn rojo" data-color="fallo" title="Fallo">🔴</button>
+                    </div>
+                    <button class="btn btn--primary btn--lg" id="agregar-serie">➕ Agregar Serie</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navegación Fija Inferior -->
+        <div class="bottom-navigation">
+            <button class="nav-btn" id="ejercicio-anterior" disabled>
+                <span>⬅️</span>
+                <small>Anterior</small>
+            </button>
+            <button class="nav-btn" id="lista-ejercicios-btn">
+                <span>📋</span>
+                <small>Lista</small>
+            </button>
+            <button class="nav-btn" id="ejercicio-siguiente">
+                <span>➡️</span>
+                <small>Siguiente</small>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Crear/Editar Rutina -->
+    <div id="modal-rutina" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-rutina-title">Nueva Rutina</h3>
+                <button class="modal-close" id="modal-rutina-close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Nombre de la Rutina</label>
+                    <input type="text" class="form-control" id="rutina-nombre" placeholder="Ej: Push Pull Legs">
+                </div>
+                
+                <div class="ejercicios-rutina" id="ejercicios-rutina">
+                    <h4>Ejercicios</h4>
+                    <div id="ejercicios-rutina-list"></div>
+                    <button class="btn btn--secondary" id="agregar-ejercicio-rutina">➕ Agregar Ejercicio</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--outline" id="cancelar-rutina">Cancelar</button>
+                <button class="btn btn--primary" id="guardar-rutina">Guardar Rutina</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Agregar Ejercicio -->
+    <div id="modal-ejercicio" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Agregar Ejercicio</h3>
+                <button class="modal-close" id="modal-ejercicio-close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Seleccionar Ejercicio</label>
+                    <select class="form-control" id="select-ejercicio">
+                        <option value="">Elegir ejercicio...</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Equipamiento</label>
+                    <select class="form-control" id="select-equipamiento">
+                        <option value="Barra">Barra</option>
+                        <option value="Mancuernas">Mancuernas</option>
+                        <option value="Máquina">Máquina</option>
+                        <option value="Cable">Cable</option>
+                        <option value="Peso Corporal">Peso Corporal</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Series</label>
+                        <input type="number" class="form-control" id="ejercicio-series" value="3" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Repeticiones</label>
+                        <input type="number" class="form-control" id="ejercicio-reps" value="10" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Peso (kg)</label>
+                        <input type="number" step="0.25" class="form-control" id="ejercicio-peso" placeholder="0.0">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Observaciones</label>
+                    <textarea class="form-control" id="ejercicio-observaciones" placeholder="Notas adicionales..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--outline" id="cancelar-ejercicio">Cancelar</button>
+                <button class="btn btn--primary" id="agregar-ejercicio">Agregar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nuevo Ejercicio Personalizado -->
+    <div id="modal-nuevo-ejercicio" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nuevo Ejercicio</h3>
+                <button class="modal-close" id="modal-nuevo-ejercicio-close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Nombre del Ejercicio</label>
+                    <input type="text" class="form-control" id="nuevo-ejercicio-nombre" placeholder="Ej: Press Inclinado con Mancuernas">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Grupo Muscular</label>
+                    <select class="form-control" id="nuevo-ejercicio-musculo">
+                        <option value="Pecho">Pecho</option>
+                        <option value="Espalda">Espalda</option>
+                        <option value="Piernas">Piernas</option>
+                        <option value="Hombros">Hombros</option>
+                        <option value="Brazos">Brazos</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Descripción</label>
+                    <textarea class="form-control" id="nuevo-ejercicio-descripcion" placeholder="Descripción del ejercicio..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--outline" id="cancelar-nuevo-ejercicio">Cancelar</button>
+                <button class="btn btn--primary" id="guardar-nuevo-ejercicio">Crear Ejercicio</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Añadir a Rutina -->
+    <div id="modal-anadir-rutina" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Añadir a Rutina</h3>
+                <button class="modal-close" id="modal-anadir-close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Seleccionar Rutina</label>
+                    <select class="form-control" id="select-rutina-destino">
+                        <option value="">Elegir rutina...</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Equipamiento</label>
+                    <select class="form-control" id="anadir-equipamiento">
+                        <option value="Barra">Barra</option>
+                        <option value="Mancuernas">Mancuernas</option>
+                        <option value="Máquina">Máquina</option>
+                        <option value="Cable">Cable</option>
+                        <option value="Peso Corporal">Peso Corporal</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Series</label>
+                        <input type="number" class="form-control" id="anadir-series" value="3" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Repeticiones</label>
+                        <input type="number" class="form-control" id="anadir-reps" value="10" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Peso (kg)</label>
+                        <input type="number" step="0.25" class="form-control" id="anadir-peso" placeholder="0.0">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Observaciones</label>
+                    <textarea class="form-control" id="anadir-observaciones" placeholder="Notas adicionales..."></textarea>
+                </div>
+                
+                <div class="ejercicio-preview" id="ejercicio-preview"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--outline" id="cancelar-anadir">Cancelar</button>
+                <button class="btn btn--primary" id="confirmar-anadir">Añadir Ejercicio</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Lista Ejercicios (durante entrenamiento) -->
+    <div id="modal-lista-ejercicios" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📋 Ejercicios de la Rutina</h3>
+                <button class="modal-close" id="modal-lista-close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="lista-ejercicios-entrenamiento"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--primary" id="cerrar-lista">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nueva Carpeta -->
+    <div id="modal-nueva-carpeta" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📁 Nueva Carpeta</h3>
+                <button class="modal-close" id="modal-carpeta-close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Nombre de la Carpeta</label>
+                    <input type="text" class="form-control" id="carpeta-nombre" placeholder="Ej: Rutinas de Fuerza">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--outline" id="cancelar-carpeta">Cancelar</button>
+                <button class="btn btn--primary" id="crear-carpeta">Crear Carpeta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Importar Backup -->
+    <div id="modal-importar-backup" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📁 Importar Backup</h3>
+                <button class="modal-close" id="modal-importar-backup-close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Seleccionar Archivo</label>
+                    <input type="file" class="form-control" id="backup-file" accept=".json">
+                </div>
+                <div class="backup-info" id="backup-info"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--outline" id="cancelar-importar-backup">Cancelar</button>
+                <button class="btn btn--primary" id="procesar-backup">Importar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
 </body>
 </html>
