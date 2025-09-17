@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gym para Piquis - Entrena Inteligente</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sf-symbols@2.0.0/sf-symbols.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <!-- Navegación Principal -->
@@ -14,10 +14,10 @@
             <h1 class="nav-title">Gym para Piquis</h1>
             <div class="nav-actions">
                 <button class="backup-indicator" id="backupIndicator" title="Estado del backup">
-                    <span class="backup-icon sf-symbol">icloud.fill</span>
+                    <span class="backup-icon"><i class="fas fa-cloud"></i></span>
                     <span class="backup-text">Backup OK</span>
                 </button>
-                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema"><span class="sf-symbol">moon.fill</span></button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema"><i class="fas fa-moon"></i></button>
             </div>
         </div>
     </nav>
@@ -310,23 +310,23 @@
     <!-- Navegación Inferior -->
     <nav class="bottom-nav">
         <button class="nav-item active" data-view="dashboard">
-            <span class="nav-icon sf-symbol">house.fill</span>
+            <span class="nav-icon"><i class="fas fa-home"></i></span>
             <span class="nav-label">Inicio</span>
         </button>
         <button class="nav-item" data-view="exerciseLibrary">
-            <span class="nav-icon sf-symbol">book.fill</span>
+            <span class="nav-icon"><i class="fas fa-book"></i></span>
             <span class="nav-label">Biblioteca</span>
         </button>
         <button class="nav-item" data-view="routines">
-            <span class="nav-icon sf-symbol">list.bullet.clipboard.fill</span>
+            <span class="nav-icon"><i class="fas fa-clipboard-list"></i></span>
             <span class="nav-label">Rutinas</span>
         </button>
         <button class="nav-item" data-view="history">
-            <span class="nav-icon sf-symbol">chart.bar.fill</span>
+            <span class="nav-icon"><i class="fas fa-chart-bar"></i></span>
             <span class="nav-label">Historial</span>
         </button>
         <button class="nav-item" data-view="backupConfig">
-            <span class="nav-icon sf-symbol">arrow.clockwise.icloud.fill</span>
+            <span class="nav-icon"><i class="fas fa-cloud-upload-alt"></i></span>
             <span class="nav-label">Backup</span>
         </button>
     </nav>
@@ -334,15 +334,15 @@
     <!-- Navegación de Entrenamiento (se muestra solo durante entrenamientos) -->
     <nav id="workoutBottomNav" class="workout-bottom-nav hidden">
         <button class="workout-nav-btn" id="prevExerciseBtn">
-            <span class="workout-nav-icon sf-symbol">chevron.backward</span>
+            <span class="workout-nav-icon"><i class="fas fa-chevron-left"></i></span>
             <span class="workout-nav-label">Anterior</span>
         </button>
         <button class="workout-nav-btn" id="workoutOverviewBtn">
-            <span class="workout-nav-icon sf-symbol">list.bullet.clipboard</span>
+            <span class="workout-nav-icon"><i class="fas fa-clipboard-list"></i></span>
             <span class="workout-nav-label">Lista Completa</span>
         </button>
         <button class="workout-nav-btn" id="nextExerciseBtn">
-            <span class="workout-nav-icon">➡️</span>
+            <span class="workout-nav-icon"><i class="fas fa-chevron-right"></i></span>
             <span class="workout-nav-label">Siguiente</span>
         </button>
     </nav>
