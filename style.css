@@ -814,7 +814,7 @@ select.form-control {
   font-size: var(--font-size-base);
 }
 
-.backup-icon.sf-symbol {
+.backup-icon i {
   font-size: var(--font-size-lg);
   color: var(--color-primary);
 }
@@ -1519,6 +1519,10 @@ select.form-control {
   font-size: var(--font-size-xl);
 }
 
+.workout-nav-icon i {
+  font-size: var(--font-size-xl);
+}
+
 .workout-nav-label {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
@@ -1912,7 +1916,7 @@ select.form-control {
   font-size: var(--font-size-lg);
 }
 
-.nav-icon.sf-symbol {
+.nav-icon i {
   font-size: var(--font-size-xl);
   line-height: 1;
 }
