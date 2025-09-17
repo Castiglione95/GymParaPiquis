@@ -1,2 +1,63 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>H084CF2P9BM0HRCS</RequestId><HostId>RTCS3L4icDbGFpsAWJXcBNW9dTWDrEgdycDpNkP1m/5l6F89cC+ridTULdVvzb//0zRA+amf1zk=</HostId></Error>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GYM para Piquis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Dashboard Principal -->
+  <div id="dashboard" class="view active">
+    <header class="header">
+      <h1>GYM para Piquis</h1>
+      <div class="header-actions">
+        <button class="btn btn--secondary btn--sm" id="backup-btn">💾 Backup</button>
+        <button class="btn btn--secondary btn--sm" id="importar-backup-btn">📁 Importar</button>
+        <div class="backup-status" id="backup-status">
+          <span class="status status--success">Auto-guardado hace 30s</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Esta Semana</h3>
+          <div class="stat-number">4</div>
+          <div class="stat-label">Entrenamientos</div>
+        </div>
+        <div class="stat-card">
+          <h3>Total</h3>
+          <div class="stat-number">127</div>
+          <div class="stat-label">Sesiones</div>
+        </div>
+        <div class="stat-card">
+          <h3>Progreso</h3>
+          <div class="stat-number">+12.5kg</div>
+          <div class="stat-label">Press Banca</div>
+        </div>
+        <div class="stat-card">
+          <h3>Rutinas</h3>
+          <div class="stat-number">8</div>
+          <div class="stat-label">Creadas</div>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <button class="btn btn--primary btn--xl main-btn" id="quick-workout-btn">🚀 Iniciar Entrenamiento</button>
+        <button class="btn btn--secondary btn--xl main-btn" id="biblioteca-btn">📚 Biblioteca</button>
+        <button class="btn btn--secondary btn--xl main-btn" id="historial-btn">📊 Historial</button>
+        <button class="btn btn--secondary btn--xl main-btn" id="rutinas-btn">📝 Rutinas</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 GYM para Piquis. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
